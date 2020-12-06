@@ -1,6 +1,6 @@
 # Ruptiva Code Challenge - Matheus Costa
 
-## Table of Contents
+## Sumário
 
 - [Sobre](#about)
 - [Observação Importante](#obs)
@@ -16,7 +16,7 @@ Deve ser desenvolvido com React Native (Expo) e Typescript.
 
 <img width=335px height=600px src="https://i.imgur.com/QSEpTD3.png" alt="Project Screenshot"></a>
 
-# Principais ferramentas
+### Principais ferramentas
 
 **Foi utilizado:**
 
@@ -28,6 +28,12 @@ Deve ser desenvolvido com React Native (Expo) e Typescript.
 Foi desenvolvido também como atividade extra, pequena demonstração de como seria a aplicação
 utilizando Redux: https://github.com/MatheusCoxxxta/Ruptiva-Code-Challenge-Front-end
 
+### Problemas e dificuldades
+
+Uma instabilidade de ambiente do Snack com a biblioteca do Styled Components tornou inviável a criação utilizando o ambiente. A solução foi desenvolver localmente e fazer a build para APK para caso queiram fazer uso do App.
+
+Uma instabiliadade entre Expo e Firestore (que foi reportada recentemente ao Expo pela comunidade), explicada em maiores detalhes abaixo, inviabilizou a utlização do Firestore para armazenar os dados. A solução foi a criação de uma API Rest para criar usuário, listar e deletar. Para não fugir da ideia de banco não relacional, a API está conectada ao MongoDB.
+
 ## Observação Importante <a name = "obs"></a>
 
 Como comunicado anteriormente ao Hoberdan Engel por e-mail, o Expo está com uma instabilidade em uma biblioteca de integração com o Firestore, então criei uma API com as funcionalidades necessárias no desafio e deixarei disponivel para qualquer candidato com o mesmo problema entre Expo e Firestore.
@@ -38,7 +44,7 @@ Primeiramente foi desenvolvido o design (UI) e recursos gráficos necessários n
 
 Para o desenvolvimento do projeto React Native, foram criados os componentes (Formulário e Lista de usuários), que recebem dados e funções do componente principal (Main), dessa forma esses dados e funções poderiam ser utilizados em outros componentes em caso de expansão do projeto.
 
-**Link para download do APK:** https://drive.google.com/file/d/1ZEdRNGtQQT8hWbL7-VHrm10DhtzoUpqe/view?usp=sharing
+**Link para download do APK:** https://drive.google.com/file/d/1rU2L-G2TJBFy_HFV1RY15RmbFWqai2be/view?usp=sharing
 
 ## Utilizando <a name = "usage"></a>
 
