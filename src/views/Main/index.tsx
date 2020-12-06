@@ -5,13 +5,13 @@ import {
   StyleSheet,
   StatusBar,
   ImageBackground,
+  Alert,
 } from "react-native";
-import Constants from "expo-constants";
 import Form from "../../components/Main/Form";
 import UserList from "../../components/Main/UserList";
 
 import userType from "../../tools/userType";
-import { User, IUsers } from "../../types";
+import { User } from "../../types";
 import api from "../../../services/api";
 
 const wait = (timeout: number) => {
@@ -22,8 +22,19 @@ const wait = (timeout: number) => {
 
 const Main = () => {
   const [refreshing, setRefreshing] = useState(false);
-  const [users, setUsers] = useState<IUsers[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+
+  /**
+   * Loading States
+   */
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingData, setLoadingData] = useState<boolean>(true);
+
+  /**
+   * Error Handling Stats
+   */
+  const [errorGetData, setErrorGetData] = useState<boolean>(false);
+  const [sendDataError, setSendDataError] = useState<boolean>(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -38,13 +49,16 @@ const Main = () => {
    */
 
   const getUsers = async () => {
+    setLoadingData(true);
     await api
       .get("user")
       .then((response) => {
         setUsers(response.data);
+        setLoadingData(false);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        setLoadingData(false);
+        setErrorGetData(true);
       });
   };
 
@@ -68,9 +82,18 @@ const Main = () => {
         setUsers(newList);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         setLoading(false);
+        Alert.alert(
+          "Ocorreu um erro!",
+          "Algo falhou ao tentar cadastrar o usuário...",
+          [
+            {
+              text: "Ok",
+              style: "cancel",
+            },
+          ]
+        );
       });
   };
 
@@ -87,8 +110,17 @@ const Main = () => {
         const newList = users.filter((user) => user._id !== id);
         setUsers(newList);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        Alert.alert(
+          "Ocorreu um erro!",
+          "Algo falhou ao tentar deletar o usuário...",
+          [
+            {
+              text: "Ok",
+              style: "cancel",
+            },
+          ]
+        );
       });
   };
 
@@ -103,6 +135,7 @@ const Main = () => {
         backgroundColor="transparent"
         translucent
       />
+
       <ScrollView
         scrollEnabled={false}
         contentContainerStyle={styles.scrollView}
@@ -116,8 +149,14 @@ const Main = () => {
           style={styles.container}
           resizeMode="center"
         />
+
         <Form handle={handleForm} loading={loading} />
-        <UserList users={users} delete={handleDelete} />
+        <UserList
+          users={users}
+          delete={handleDelete}
+          loading={loadingData}
+          error={errorGetData}
+        />
       </ScrollView>
     </>
   );
