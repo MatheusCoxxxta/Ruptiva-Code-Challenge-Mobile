@@ -12,10 +12,3 @@ export interface User {
   document: string,
   type: string
 }
-
-export interface IUsers {
-  _id?: string,
-  name: string,
-  document: string,
-  type: string
-}
