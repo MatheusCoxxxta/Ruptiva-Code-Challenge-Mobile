@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Image, TouchableOpacity, Alert, View } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+  ActivityIndicator,
+  Text,
+} from "react-native";
 import { cpfMask, cnpjMask } from "../../../tools/documentMasks";
 import { Feather } from "@expo/vector-icons";
 import { User } from "../../../types/";
@@ -19,6 +26,8 @@ import {
 const UserList = (props: {
   users: { _id?: string; name: string; document: string; type: string }[];
   delete: (user: User) => void;
+  loading: boolean;
+  error: boolean;
 }) => {
   let { users } = props;
 
@@ -35,63 +44,76 @@ const UserList = (props: {
     <>
       <Box style={styles.container}>
         <Title>Usuários</Title>
-        <ScrollBox>
-          {users.map(
-            (user: {
-              _id?: string;
-              name: string;
-              document: string;
-              type: string;
-            }) => (
-              <Row key={user._id} style={{ flex: 1 }}>
-                <UserBox>
-                  <ImageBg
-                    style={[
-                      { borderWidth: 2 },
-                      user.type === "individual"
-                        ? { borderColor: "#ff6a00" }
-                        : { borderColor: "#00b2ff" },
-                    ]}
+        {props.loading ? (
+          <ActivityIndicator size="large" color="#fff" />
+        ) : props.error ? (
+          <Title style={{ color: "#f11" }}>
+            Ocorreu um prolema ao buscar usuários...
+          </Title>
+        ) : users.length < 1 ? (
+          <Title>Nenhum usuário cadastrado.</Title>
+        ) : (
+          <ScrollBox>
+            {users.map(
+              (user: {
+                _id?: string;
+                name: string;
+                document: string;
+                type: string;
+              }) => (
+                <Row key={user._id} style={{ flex: 1 }}>
+                  <UserBox>
+                    <ImageBg
+                      style={[
+                        { borderWidth: 2 },
+                        user.type === "individual"
+                          ? { borderColor: "#ff6a00" }
+                          : { borderColor: "#00b2ff" },
+                      ]}
+                    >
+                      <Image
+                        style={{ width: 30, height: 30 }}
+                        source={
+                          user.type === "business"
+                            ? require("../../../../assets/Business.png")
+                            : require("../../../../assets/Individual.png")
+                        }
+                      />
+                    </ImageBg>
+                    <TextCol>
+                      <RowName>{user.name}</RowName>
+                      <RowDoc>
+                        {user.document.length === 11
+                          ? cpfMask(user.document)
+                          : cnpjMask(user.document)}
+                      </RowDoc>
+                    </TextCol>
+                  </UserBox>
+                  <TouchableOpacity
+                    onPress={() =>
+                      Alert.alert(
+                        "Atenção!",
+                        "Gostaria de deletar o usuário?",
+                        [
+                          {
+                            text: "Cancelar",
+                            style: "cancel",
+                          },
+                          {
+                            text: "Sim",
+                            onPress: () => handleDelete(user),
+                          },
+                        ]
+                      )
+                    }
                   >
-                    <Image
-                      style={{ width: 30, height: 30 }}
-                      source={
-                        user.type === "business"
-                          ? require("../../../../assets/Business.png")
-                          : require("../../../../assets/Individual.png")
-                      }
-                    />
-                  </ImageBg>
-                  <TextCol>
-                    <RowName>{user.name}</RowName>
-                    <RowDoc>
-                      {user.document.length === 11
-                        ? cpfMask(user.document)
-                        : cnpjMask(user.document)}
-                    </RowDoc>
-                  </TextCol>
-                </UserBox>
-                <TouchableOpacity
-                  onPress={() =>
-                    Alert.alert("Atenção!", "Gostaria de deletar o usuário?", [
-                      {
-                        text: "Cancelar",
-                        onPress: () => Alert.alert("Ação cancelada."),
-                        style: "cancel",
-                      },
-                      {
-                        text: "Sim",
-                        onPress: () => handleDelete(user),
-                      },
-                    ])
-                  }
-                >
-                  <Feather name="trash" size={24} color="white" />
-                </TouchableOpacity>
-              </Row>
-            )
-          )}
-        </ScrollBox>
+                    <Feather name="trash" size={24} color="white" />
+                  </TouchableOpacity>
+                </Row>
+              )
+            )}
+          </ScrollBox>
+        )}
       </Box>
     </>
   );
