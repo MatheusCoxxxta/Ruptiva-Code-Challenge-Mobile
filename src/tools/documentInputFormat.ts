@@ -4,7 +4,10 @@ const formatDocument = (documentNoFormated:string) => {
     .replace(/\-/g, "")
     .replace(/\//g, "");
 
-  return docFormated;
+
+  if (docFormated.length === 14 || docFormated.length === 11) return docFormated;
+  else return "Invalid"
+
 };
 
 
