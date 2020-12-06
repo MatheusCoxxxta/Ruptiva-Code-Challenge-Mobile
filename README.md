@@ -14,7 +14,7 @@
 O Ruptiva Code Challenge é desenvolvido como desafio do processo seletivo da Ruptiva.
 Deve ser desenvolvido com React Native (Expo) e Typescript.
 
-<img width=500px height=250px src="https://imgur.com/QSEpTD3" alt="Project Screenshot"></a>
+<img width=500px height=250px src="https://i.imgur.com/QSEpTD3.png" alt="Project Screenshot"></a>
 
 # Principais ferramentas
 
