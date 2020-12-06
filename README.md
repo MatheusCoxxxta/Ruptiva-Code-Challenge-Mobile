@@ -19,7 +19,7 @@ Deve ser desenvolvido com React Native (Expo) e Typescript.
 Foi desenvolvido também como atividade extra, pequena demonstração de como seria a aplicação
 utilizando Redux: https://github.com/MatheusCoxxxta/Ruptiva-Code-Challenge-Front-end
 
-### Problemas e dificuldades
+## Problemas e dificuldades
 
 Uma instabilidade de ambiente do Snack com a biblioteca do Styled Components tornou inviável a criação utilizando o ambiente. A solução foi desenvolver localmente e fazer a build para APK para caso queiram fazer uso do App.
 
