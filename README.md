@@ -16,15 +16,6 @@ Deve ser desenvolvido com React Native (Expo) e Typescript.
 
 <img width=335px height=600px src="https://i.imgur.com/QSEpTD3.png" alt="Project Screenshot"></a>
 
-### Principais ferramentas
-
-**Foi utilizado:**
-
-- React Native
-- Styled Components
-- Hooks
-- Integração com API REST
-
 Foi desenvolvido também como atividade extra, pequena demonstração de como seria a aplicação
 utilizando Redux: https://github.com/MatheusCoxxxta/Ruptiva-Code-Challenge-Front-end
 
@@ -43,6 +34,15 @@ Como comunicado anteriormente ao Hoberdan Engel por e-mail, o Expo está com uma
 Primeiramente foi desenvolvido o design (UI) e recursos gráficos necessários no Figma.
 
 Para o desenvolvimento do projeto React Native, foram criados os componentes (Formulário e Lista de usuários), que recebem dados e funções do componente principal (Main), dessa forma esses dados e funções poderiam ser utilizados em outros componentes em caso de expansão do projeto.
+
+### Principais ferramentas
+
+**Foi utilizado:**
+
+- React Native
+- Styled Components
+- Hooks
+- Integração com API REST
 
 **Link para download do APK:** https://drive.google.com/file/d/1rU2L-G2TJBFy_HFV1RY15RmbFWqai2be/view?usp=sharing
 
