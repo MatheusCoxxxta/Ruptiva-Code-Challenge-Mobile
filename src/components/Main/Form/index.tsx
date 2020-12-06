@@ -28,14 +28,19 @@ const Form = (props: {
 
   const handleForm = () => {
     let docFormated: string = formatDocument(document);
+
+    if (!name) setRequireName("Insira um nome!");
+    if (!document) setRequireDocument("Insira um CPF ou CNPJ!");
+    if (docFormated === "Invalid")
+      setRequireDocument("Insira um CPF ou CNPJ válido!");
+
     if (name && (docFormated.length === 11 || docFormated.length === 14)) {
       props.handle(name, docFormated);
       setName("");
       setDocument("");
+      setRequireName("");
+      setRequireDocument("");
     }
-
-    if (!name) setRequireName("Insira um nome!");
-    if (!document) setRequireDocument("Insira um CPF ou CNPJ!");
   };
 
   return (
@@ -61,7 +66,7 @@ const Form = (props: {
           onChangeText={(value) => setDocument(value)}
         />
       </InputGroup>
-      {requireDocument && !document ? (
+      {requireDocument ? (
         <WarningLabel> {requireDocument} </WarningLabel>
       ) : null}
 
