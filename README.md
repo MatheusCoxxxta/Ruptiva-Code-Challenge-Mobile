@@ -1,4 +1,4 @@
-# undefined
+# Ruptiva Code Challenge - Matheus Costa
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@
 O Ruptiva Code Challenge é desenvolvido como desafio do processo seletivo da Ruptiva.
 Deve ser desenvolvido com React Native (Expo) e Typescript.
 
-<Image src='https://imgur.com/QSEpTD3'>
+<img width=500px height=250px src="https://imgur.com/QSEpTD3" alt="Project Screenshot"></a>
 
 # Principais ferramentas
 
