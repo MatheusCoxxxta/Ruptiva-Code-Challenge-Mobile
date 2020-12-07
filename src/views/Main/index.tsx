@@ -6,6 +6,8 @@ import {
   StatusBar,
   ImageBackground,
   Alert,
+  ToastAndroid,
+  Platform,
 } from "react-native";
 import Form from "../../components/Main/Form";
 import UserList from "../../components/Main/UserList";
@@ -84,16 +86,21 @@ const Main = () => {
       })
       .catch(() => {
         setLoading(false);
-        Alert.alert(
-          "Ocorreu um erro!",
-          "Algo falhou ao tentar cadastrar o usuário...",
-          [
-            {
-              text: "Ok",
-              style: "cancel",
-            },
-          ]
-        );
+        Platform.OS !== "android"
+          ? Alert.alert(
+              "Ocorreu um erro!",
+              "Algo falhou ao tentar cadastrar o usuário...",
+              [
+                {
+                  text: "Ok",
+                  style: "cancel",
+                },
+              ]
+            )
+          : ToastAndroid.show(
+              "Algo falhou ao tentar cadastrar o usuário...",
+              ToastAndroid.LONG
+            );
       });
   };
 
@@ -111,16 +118,21 @@ const Main = () => {
         setUsers(newList);
       })
       .catch(() => {
-        Alert.alert(
-          "Ocorreu um erro!",
-          "Algo falhou ao tentar deletar o usuário...",
-          [
-            {
-              text: "Ok",
-              style: "cancel",
-            },
-          ]
-        );
+        Platform.OS !== "android"
+          ? Alert.alert(
+              "Ocorreu um erro!",
+              "Algo falhou ao tentar deletar o usuário...",
+              [
+                {
+                  text: "Ok",
+                  style: "cancel",
+                },
+              ]
+            )
+          : ToastAndroid.show(
+              "Algo falhou ao tentar deletar o usuário...",
+              ToastAndroid.LONG
+            );
       });
   };
 
