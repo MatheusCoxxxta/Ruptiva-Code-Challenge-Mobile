@@ -44,7 +44,7 @@ Para o desenvolvimento do projeto React Native, foram criados os componentes (Fo
 - Hooks
 - Integração com API REST
 
-**Link para download do APK:** https://drive.google.com/file/d/1rU2L-G2TJBFy_HFV1RY15RmbFWqai2be/view?usp=sharing
+**Link para download do APK:** https://drive.google.com/file/d/1cpzacVtMSS-By7sjb7qr2Rfngq26mRQA/view?usp=sharing
 
 ## Utilizando <a name = "usage"></a>
 
